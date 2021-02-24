@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+  <meta name="theme-color" content="#283593" />
+  <meta name="Description" content="Exemplarische PWA im Zuge eines Referates für die FHDW Paderborn.">
+  <!-- Service Worker-->
+  <script src="service-worker.js"></script>
+  <!---Web App Manifest-->
+  <link rel="manifest" href="app.webmanifest">
+  <!--Apple specific settings-->
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>PWA Beispiel</title>
+</head>
+
+<body>
+  <nav>
+    <a href="#intro">
+      <div>Intro</div>
+    </a>
+    <a href="#good2know">
+      <div>Good2Know</div>
+    </a>
+    <a href="#demo">
+      <div>Demo</div>
+    </a>
+    <a href="#weiteres">
+      <div>Weiteres</div>
+    </a>
+  </nav>
+  <header>
+    <section>
+      <div class="invisible offline-indicator"> <img src="images/wifi-offline.svg" alt="Offline Icon"> Die Anwendung ist
+        offline.</div>
+      <div class="logo"></div>
+    </section>
+    <section>
+      <h1 class="white-text">Progressive Web Apps</h1>
+      <p class="white-text">Yannik Noa Haase</p>
+    </section>
+  </header>
+  <main>
+    <div class="transition-wrapper-header">
+      <svg width="100%" height="100%" viewBox="0 0 1440 100" version="1.1" xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/"
+        style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+        <path
+          d="M0,200L0,50C0,50 85,78.9 200,72C250,69 264.099,31.88 300,32C350,32.167 415.948,127.509 500,73C561.203,33.309 614,58 800,72C849.949,75.76 864.099,31.88 900,32C950,32.167 1000,67 1100,73C1156.57,76.394 1195.36,52.944 1199.61,50.25C1213.52,40.824 1225.88,31.941 1243.47,32C1293.47,32.167 1359.42,127.509 1443.47,73C1504.67,33.309 1557.47,58 1743.47,72C1793.42,75.76 1807.57,31.88 1843.47,32C1893.47,32.167 1943.47,67 2043.47,73C2103.47,76.6 2143.47,50 2143.47,50L2143.47,200L0,200Z" />
+      </svg>
+    </div>
+    <section id="intro">
+      <div class="content">
+        <h2>Intro</h2>
+        <p>Diese Seite entstand im Rahmen des Referates "Progressive Web Apps" von Yannik Noa Haase im Modul
+          "IT-Methoden-Trends" an der FHDW in Paderborn. Sie
+          stellt eine exemplarische PWA dar und soll der Verdeutlichung der Funktionalitäten dieser Art von
+          Webanwendungen dienen, und gleichzeitig einen Überblick und interessante Ressourcen im Bezug auf das Thema zur
+          Verfügung stellen.</p>
+        <p>Progressive Web Apps (PWA) sind ein Anwendungsmodell, das auf der Grundlage moderner Browserfunktionalitäten
+          als eine Kombination aus klassischer Website und nativer Applikation bezeichnet werden kann.</p>
+        <p>Native Applikationen sind in diesem Zuge Anwendungen, die für ein dediziertes Betriebssystem entwickelt und
+          angeboten werden. Hierunter fallen unter anderem Softwareprodukte in den Programmiersprachen Java oder Kotlin
+          für Android-Distributionen, Swift für Apple iOS oder C# für Windowsbasierte Betriebssysteme. Die Distribution
+          von nativen Apps erfolgt in der Regel durch plattform-exklusive Kanäle wie dem Google Play Store oder dem App
+          Store von iOS. Die Apps können auf den Zielsystemen installiert werden und können über Application Programming
+          Interfaces (API: Programmierschnittstellen) auf viele Funktionen des Gerätes zugreifen. Dies ermöglicht zum
+          Beispiel die Nutzung des internen Gerätespeichers oder den Zugriff auf Geräteschnittstellen wie Kamera oder
+          Mikrofon. Die Entwicklung von nativen Anwendungen ist häufig mit hohen Kosten verbunden. Für
+          die genannten Betriebssysteme werden häufig eigenständige Anwendungen in verschiedenen Sprachen entwickelt,
+          die je
+          nach Zielsystem auf unterschiedliche Gerätefunktionen zurückgreifen müssen.</p>
+        <p>Webanwendungen sind hier teilweise im Vorteil &ndash; die Zielplattform ist der Browser, die Entwicklung ist
+          somit
+          nicht mehr geräte- oder betriebsystemabhängig. Zwar existieren verschiedene Browser am Markt, doch die Anzahl
+          der Lösungen ist überschaubar. Außerdem handelt es sich um ein technisches Umfeld das stärker von
+          Standardisierung geprägt ist. Webanwendungen können mit Hilfe von Internetbrowsern auf nahezu jedem Endgerät
+          genutzt werden &ndash; eine geräteabhängige Distribution der Applikationen entfällt. Somit ist auch keine
+          Installation nötig. Die Entwicklung von Webanwendungen ist damit kostengünstiger, da keine unterschiedlichen
+          Technologiestacks von Nöten sind, um eine hohe Nutzerabdeckung erzielen zu können. Doch auch Webanwendungen
+          haben ihre Schwächen: zwar ist die Nutzungsbarriere dank des nicht benötigten Installationsprozesses geringer,
+          dafür sind Webanwendung aber weder ohne Internetverbindung nutzbar, noch können sie auf die wesentlichen
+          Betriebssystemfunktionen und Schnittstellen zugreifen.</p>
+        <p>PWA sind der Versuch, die Vorteile dieser beider Welten zu vereinen. Bestrebt wird die Symbiose aus
+          plattformübergreifenden Anwendungen, mit den Funktionsvorteilen von nativen Anwendungen, die auch offline
+          jederzeit abgerufen werden können. Initiiert und erstmals beschrieben wurden PWA am 15. Juni 2015 von Alex
+          Russel, einem Produktmanager von Google.</p>
+      </div>
+    </section>
+    <section id="good2know">
+      <div class="content">
+        <h2>Good2Know</h2>
+        <p>Dieser Abschnitt fasst die wesentlichen Eigenschaften von PWA zusammen, stellt die grundlegenden
+          Implementierungskonzepte vor und gibt einen Überblick, über derzeit nutzbare Webschnittstellen.</p>
+        <h3>Eigenschaften</h3>
+        <p>In seinem initialen Blogpost beschreibt Alex Russel neun wesentliche Eigenschaften einer PWA.</p>
+        <div class="flex">
+          <div class="card">
+            <div class="card-header">
+              <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="mobile"
+                class="svg-inline--fa fa-mobile fa-w-10" role="img" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 320 512">
+                <path fill="currentColor"
+                  d="M272 0H48C21.5 0 0 21.5 0 48v416c0 26.5 21.5 48 48 48h224c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48zM160 480c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32z">
+                </path>
+              </svg>
+            </div>
+            <b>Responsive</b>
+            <p class="smaller">PWA passen sich unterschiedlichen Displaygrößen an</p>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="wifi"
+                class="svg-inline--fa fa-wifi fa-w-20" role="img" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 640 512">
+                <path fill="currentColor"
+                  d="M634.91 154.88C457.74-8.99 182.19-8.93 5.09 154.88c-6.66 6.16-6.79 16.59-.35 22.98l34.24 33.97c6.14 6.1 16.02 6.23 22.4.38 145.92-133.68 371.3-133.71 517.25 0 6.38 5.85 16.26 5.71 22.4-.38l34.24-33.97c6.43-6.39 6.3-16.82-.36-22.98zM320 352c-35.35 0-64 28.65-64 64s28.65 64 64 64 64-28.65 64-64-28.65-64-64-64zm202.67-83.59c-115.26-101.93-290.21-101.82-405.34 0-6.9 6.1-7.12 16.69-.57 23.15l34.44 33.99c6 5.92 15.66 6.32 22.05.8 83.95-72.57 209.74-72.41 293.49 0 6.39 5.52 16.05 5.13 22.05-.8l34.44-33.99c6.56-6.46 6.33-17.06-.56-23.15z">
+                </path>
+              </svg>
+            </div>
+            <b>Connectivity independent</b>
+            <p class="smaller">Service Worker erlauben die Nutzung der PWA ohne Internetzugang</p>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="hand-point-up"
+                class="svg-inline--fa fa-hand-point-up fa-w-12" role="img" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 384 512">
+                <path fill="currentColor"
+                  d="M135.652 0c23.625 0 43.826 20.65 43.826 44.8v99.851c17.048-16.34 49.766-18.346 70.944 6.299 22.829-14.288 53.017-2.147 62.315 16.45C361.878 158.426 384 189.346 384 240c0 2.746-.203 13.276-.195 16 .168 61.971-31.065 76.894-38.315 123.731C343.683 391.404 333.599 400 321.786 400H150.261l-.001-.002c-18.366-.011-35.889-10.607-43.845-28.464C93.421 342.648 57.377 276.122 29.092 264 10.897 256.203.008 242.616 0 224c-.014-34.222 35.098-57.752 66.908-44.119 8.359 3.583 16.67 8.312 24.918 14.153V44.8c0-23.45 20.543-44.8 43.826-44.8zM136 416h192c13.255 0 24 10.745 24 24v48c0 13.255-10.745 24-24 24H136c-13.255 0-24-10.745-24-24v-48c0-13.255 10.745-24 24-24zm168 28c-11.046 0-20 8.954-20 20s8.954 20 20 20 20-8.954 20-20-8.954-20-20-20z">
+                </path>
+              </svg>
+            </div>
+            <b>App-like-interactions</b>
+            <p class="smaller">Interaktionen verhalten sich ähnlich zu normalen Apps</p>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="leaf"
+                class="svg-inline--fa fa-leaf fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 576 512">
+                <path fill="currentColor"
+                  d="M546.2 9.7c-5.6-12.5-21.6-13-28.3-1.2C486.9 62.4 431.4 96 368 96h-80C182 96 96 182 96 288c0 7 .8 13.7 1.5 20.5C161.3 262.8 253.4 224 384 224c8.8 0 16 7.2 16 16s-7.2 16-16 16C132.6 256 26 410.1 2.4 468c-6.6 16.3 1.2 34.9 17.5 41.6 16.4 6.8 35-1.1 41.8-17.3 1.5-3.6 20.9-47.9 71.9-90.6 32.4 43.9 94 85.8 174.9 77.2C465.5 467.5 576 326.7 576 154.3c0-50.2-10.8-102.2-29.8-144.6z">
+                </path>
+              </svg>
+            </div>
+            <b>Fresh</b>
+            <p class="smaller">Wann immer möglich nutzen PWA die aktuellste Version ihrerselbst</p>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="lock"
+                class="svg-inline--fa fa-lock fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 448 512">
+                <path fill="currentColor"
+                  d="M400 224h-24v-72C376 68.2 307.8 0 224 0S72 68.2 72 152v72H48c-26.5 0-48 21.5-48 48v192c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V272c0-26.5-21.5-48-48-48zm-104 0H152v-72c0-39.7 32.3-72 72-72s72 32.3 72 72v72z">
+                </path>
+              </svg>
+            </div>
+            <b>Safe</b>
+            <p class="smaller">PWA müssen per TLS gesicherter Verbindungen bereitgestellt werden</p>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="compass"
+                class="svg-inline--fa fa-compass fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 496 512">
+                <path fill="currentColor"
+                  d="M225.38 233.37c-12.5 12.5-12.5 32.76 0 45.25 12.49 12.5 32.76 12.5 45.25 0 12.5-12.5 12.5-32.76 0-45.25-12.5-12.49-32.76-12.49-45.25 0zM248 8C111.03 8 0 119.03 0 256s111.03 248 248 248 248-111.03 248-248S384.97 8 248 8zm126.14 148.05L308.17 300.4a31.938 31.938 0 0 1-15.77 15.77l-144.34 65.97c-16.65 7.61-33.81-9.55-26.2-26.2l65.98-144.35a31.938 31.938 0 0 1 15.77-15.77l144.34-65.97c16.65-7.6 33.8 9.55 26.19 26.2z">
+                </path>
+              </svg>
+            </div>
+            <b>Discoverable</b>
+            <p class="smaller">PWA sind als App erkennbar und zum Beispiel über Suchmaschinen auffindbar</p>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="retweet"
+                class="svg-inline--fa fa-retweet fa-w-20" role="img" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 640 512">
+                <path fill="currentColor"
+                  d="M629.657 343.598L528.971 444.284c-9.373 9.372-24.568 9.372-33.941 0L394.343 343.598c-9.373-9.373-9.373-24.569 0-33.941l10.823-10.823c9.562-9.562 25.133-9.34 34.419.492L480 342.118V160H292.451a24.005 24.005 0 0 1-16.971-7.029l-16-16C244.361 121.851 255.069 96 276.451 96H520c13.255 0 24 10.745 24 24v222.118l40.416-42.792c9.285-9.831 24.856-10.054 34.419-.492l10.823 10.823c9.372 9.372 9.372 24.569-.001 33.941zm-265.138 15.431A23.999 23.999 0 0 0 347.548 352H160V169.881l40.416 42.792c9.286 9.831 24.856 10.054 34.419.491l10.822-10.822c9.373-9.373 9.373-24.569 0-33.941L144.971 67.716c-9.373-9.373-24.569-9.373-33.941 0L10.343 168.402c-9.373 9.373-9.373 24.569 0 33.941l10.822 10.822c9.562 9.562 25.133 9.34 34.419-.491L96 169.881V392c0 13.255 10.745 24 24 24h243.549c21.382 0 32.09-25.851 16.971-40.971l-16.001-16z">
+                </path>
+              </svg>
+            </div>
+            <b>Re-engagable</b>
+            <p class="smaller">PWA können durch Push-Benachrichtigungen o. ä. zur Nutzung animieren</p>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="download"
+                class="svg-inline--fa fa-download fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 512 512">
+                <path fill="currentColor"
+                  d="M216 0h80c13.3 0 24 10.7 24 24v168h87.7c17.8 0 26.7 21.5 14.1 34.1L269.7 378.3c-7.5 7.5-19.8 7.5-27.3 0L90.1 226.1c-12.6-12.6-3.7-34.1 14.1-34.1H192V24c0-13.3 10.7-24 24-24zm296 376v112c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V376c0-13.3 10.7-24 24-24h146.7l49 49c20.1 20.1 52.5 20.1 72.6 0l49-49H488c13.3 0 24 10.7 24 24zm-124 88c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20zm64 0c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20z">
+                </path>
+              </svg>
+            </div>
+            <b>Installable</b>
+            <p class="smaller">PWA können auf dem Endgerät installiert werden</p>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="link"
+                class="svg-inline--fa fa-link fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 512 512">
+                <path fill="currentColor"
+                  d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z">
+                </path>
+              </svg>
+            </div>
+            <b>Linkable</b>
+            <p class="smaller">PWA können über die Weitergabe ihrer URL leicht geteilt werden</p>
+          </div>
+        </div>
+        <h3>Implementierungs&shy;konzepte</h3>
+        <p>Der <i>Service Worker</i> ist ein zentrales Konzept in der Entwicklung von PWA. Er wird gerne auch als das
+          "Herz" der progressiven Web-Anwendung bezeichnet. Es handelt sich dabei um eine JavaScript-Datei, die mit
+          Hilfe von Events unter anderem auf Netzwerkanfragen reagieren kann. Der Service Worker ist so in der Lage, die
+          Antworten auf bestimmte Requests zu cachen. Sollte der Nutzer bei dem Abruf der App keine Internetverbindung
+          haben, kann der Service Worker die Dateien aus diesem Cache laden. Push-Notifications benötigen ebenfalls den
+          Service Worker um angezeigt werden zu können. Bemerkenswert ist, dass der Service Worker unabhängig vom
+          aktuellen
+          Browserfenster oder -tab existiert. Er kann auch nach dem Schließen der App oder des Browsers die
+          Kommunikation zum Server aufrecht erhalten. Den recht schlanken Service Worker dieser Seite kannst du dir bei
+          Interesse hier anschauen.</p>
+        <a href="service-worker.js" download>
+          <div class="clickable card">
+            <div class="card-header">
+              <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="js"
+                class="svg-inline--fa fa-js fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 448 512">
+                <path fill="currentColor"
+                  d="M0 32v448h448V32H0zm243.8 349.4c0 43.6-25.6 63.5-62.9 63.5-33.7 0-53.2-17.4-63.2-38.5l34.3-20.7c6.6 11.7 12.6 21.6 27.1 21.6 13.8 0 22.6-5.4 22.6-26.5V237.7h42.1v143.7zm99.6 63.5c-39.1 0-64.4-18.6-76.7-43l34.3-19.8c9 14.7 20.8 25.6 41.5 25.6 17.4 0 28.6-8.7 28.6-20.8 0-14.4-11.4-19.5-30.7-28l-10.5-4.5c-30.4-12.9-50.5-29.2-50.5-63.5 0-31.6 24.1-55.6 61.6-55.6 26.8 0 46 9.3 59.8 33.7L368 290c-7.2-12.9-15-18-27.1-18-12.3 0-20.1 7.8-20.1 18 0 12.6 7.8 17.7 25.9 25.6l10.5 4.5c35.8 15.3 55.9 31 55.9 66.2 0 37.8-29.8 58.6-69.7 58.6z">
+                </path>
+              </svg>
+            </div>
+            <b>Service Worker herunterladen</b>
+          </div>
+        </a>
+        <p>Eine weitere wichtige Komponente zur Realisierung von PWA ist das Web App Manifest. Dieses JSON-Dokument
+          ermöglicht die Installierbarkeit von PWA, indem es wesentliche Attribute und Eigenschaften definiert. Dazu
+          zählen zum Beispiel App-Name und -Icon, primäre und sekundäre Designfarben sowie die bevorzugte
+          Bildschirmausrichtung oder App Shortcuts. Auch die auf dieser Seite verwendete Manifest-Datei kannst du dir
+          bei Interesse gerne herunterladen und ansehen.</p>
+        <a href="app.webmanifest" download>
+          <div class="clickable card">
+            <div class="card-header">
+              <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="code"
+                class="svg-inline--fa fa-code fa-w-20" role="img" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 640 512">
+                <path fill="currentColor"
+                  d="M278.9 511.5l-61-17.7c-6.4-1.8-10-8.5-8.2-14.9L346.2 8.7c1.8-6.4 8.5-10 14.9-8.2l61 17.7c6.4 1.8 10 8.5 8.2 14.9L293.8 503.3c-1.9 6.4-8.5 10.1-14.9 8.2zm-114-112.2l43.5-46.4c4.6-4.9 4.3-12.7-.8-17.2L117 256l90.6-79.7c5.1-4.5 5.5-12.3.8-17.2l-43.5-46.4c-4.5-4.8-12.1-5.1-17-.5L3.8 247.2c-5.1 4.7-5.1 12.8 0 17.5l144.1 135.1c4.9 4.6 12.5 4.4 17-.5zm327.2.6l144.1-135.1c5.1-4.7 5.1-12.8 0-17.5L492.1 112.1c-4.8-4.5-12.4-4.3-17 .5L431.6 159c-4.6 4.9-4.3 12.7.8 17.2L523 256l-90.6 79.7c-5.1 4.5-5.5 12.3-.8 17.2l43.5 46.4c4.5 4.9 12.1 5.1 17 .6z">
+                </path>
+              </svg>
+            </div>
+            <b>Web App Manifest herunterladen</b>
+          </div>
+        </a>
+        <h3>Webschnittstellen</h3>
+        <p>Über sogenannte Webschnittstellen greifen PWA auf die nativen Gerätefunktionen zu. Die Implementierung dieser
+          Schnittstellen wird von den Geräte- und Browserherstellern durchgeführt. Aus diesem Grund kommt es leider auch
+          oft zu unterschiedlichen Entwicklungsständen zwischen den Herstellern und zu Inkonsistenzen bei der Nutzung
+          dieser Schnittstellen. Einige der relevanten Webschnittstellen sollen hier kurz genannt werden.</p>
+        <p>Die <i>Push-API</i> erlaubt Service Workern das Erzeugen von gerätenativen Push-Benachrichtigungen, inklusive
+          der damit verbundenen Interaktionsmöglichkeiten für Nutzer. Bis auf Apple haben die meisten Hersteller diese
+          Webschnittstelle in ihren Browsern implementiert.</p>
+        <p>Die <i>Web Share API</i> und ihr Pendant, die <i>Web Share Target API</i> ermöglichen das Teilen von Inhalten
+          aus der Anwendung heraus über den nativen "Teilen-Dialog", respektive das Empfangen von geteilten Inhalten um
+          sie in der Anwendung zu verarbeiten oder anzuzeigen.</p>
+        <p>Auch der Zugriff auf Gerätesensoren kann mit Hilfe der <i>Generic Sensor API</i> realisiert werden. So können
+          zum Beispiel Helligkeitsdaten, Gyroskop-Zustände oder Informationen über die Neigung des Gerätes ermittelt
+          werden.</p>
+        <p>Zur Abwicklung von Zahlungen, inklusive der Erfassung von Lieferdaten, kann die <i>Request Payment API</i>
+          verwendet werden. Sie befindet sich allerdings noch in einem eher frühen Entwicklungsstadium.</p>
+        <p>Die Wiedergabe von Audio- oder Videodaten erleichtert die <i>Media Session API</i> durch die Bereitstellung
+          von gerätenativen Wiedergabesteuerungselementen im Notification-Drawer des Gerätes oder auf Wearables.</p>
+        <p>Zugriff auf Kamera und Mikrofon ermöglicht die <i>Media Capture and Streams API</i>.</p>
+        <p>Einige der hier erwähnten Schnittstellen und Funktionen könnt ihr auf eurem Gerät im nächsten Abschnitt
+          testen. Bitte beachtet, dass ich zum Testen Microsoft Windows 10 und Android 10, jeweils in Kombination mit
+          Google Chrome oder Mozilla Firefox verwendet habe. In anderen Konstellationen können die Demo-Funktionen mehr
+          oder minder stark eingeschränkt oder nicht funktionsfähig sein.</p>
+      </div>
+    </section>
+    <section id="demo">
+      <div class="content">
+        <h2>Demo</h2>
+        <p>Hier kannst du einige der PWA-Funktionen testen. Leider unterstützen nicht alle Browserhersteller alle
+          Funktionen.</p>
+        <h3>Installierbarkeit</h3>
+        <p>Da es sich um eine PWA mit Service Worker, Manifest und gesicherter TLS Verbindung handelt, kannst du sie auf
+          den meisten Geräten installieren. Einige Browser, wie zum Beispiel Google Chrome, bieten dir dies nach einer
+          Weile automatisch durch einen Banner an. Sollte dir dies nicht angeboten werden, kannst du das in der Regel
+          über die Browser- oder Tabeinstellungen unter dem Menüpunkt "Installieren" oder "Zum Home-Bildschrim
+          hinzufügen" tun. Auch auf Desktop-Systemen ist die Installation möglich.</p>
+        <h3>Detektion der Netzwerk&shy;konnektivität</h3>
+        <p>Der Service Worker ist in der Lage, den gegenwärtigen Zustand der Netzwerkkonnektivität zu erkennen. Wenn du
+          deine Netzwerkverbindung deaktivierst (z.B. durch den Flugmodus), zeigt dir diese Seite einen entsprechenden
+          Hinweis an.</p>
+        <h3>Offlinefähigkeit</h3>
+        <p>Da der Service Worker alle relevanten Bestandteile dieser Seite bei dem ersten Aufruf in seinem Cache ablegt,
+          kannst du auf diese Seite auch ohne aktive Internetverbindung zugreifen. Möglicherweise siehst du dabei nicht
+          den aktuellsten Stand, trotzdem kannst du auf die wesentlichen Inhalte zugreifen und mit der App interagieren.
+        </p>
+        <h3>Shortcuts</h3>
+        <p>Diese App definiert zwei App Icon Shortcuts - hierbei handelt es sich um eine sehr frühe PWA-Funktion, die
+          noch von sehr wenigen Browsern und Geräten unterstützt wird. In einigen Fällen werden dir bei dem
+          Gedrückthalten des App-Icons auf dem Homescreen oder in der App-Liste Shortcuts angeboten.</p>
+        <h3>Push API</h3>
+        <p>Push-Benachrichtigungen werden zum Beispiel von Apple, also dem Safari-Browser nicht unterstützt. Wann mit
+          einer Implementierung dieser Funktion seitens Apple zu rechnen ist, ist derzeit leider nicht bekannt. Wenn du
+          auf den Button unten klickst erhälst du eine Push-Benachrichtigung &ndash; vorausgesetzt dein
+          Gerät unterstützt dies.</p>
+        <button class="white-text center" id="requestPushNotificationButton" onclick="notify();">Push-Benachrichtigung
+          testen</button>
+        <h3>Web Share API</h3>
+        <p>Die Web Share API erlaubt das Teilen von Inhalten. Du kannst zum Beispiel einen Link zu dieser Seite teilen.
+          Der Teilen-Dialog wird vorwiegend auf Mobilgeräten unterstützt.
+        </p>
+        <button class="white-text center" onclick="share();">Teilen-Funktion testen</button>
+        <h3>Media Capture and Streams API</h3>
+        <p>Diese Schnittstelle erlaubt den Zugriff auf deine Kamera bzw. dein Mikrofon. Du kannst hier dein aktuelles
+          Kamerabild einblenden lassen, wenn du diese Funktion testen möchtest. Derzeit wird nur der Abruf des
+          Kamerabildes von der Rückseite des Gerätes untersützt.</p>
+        <button id="startCamera" class="white-text center">Rückkamera testen</button>
+        <button id="stopCamera" class="white-text center" style="display:none;">Kamera deaktivieren</button>
+        <video autoplay></video>
+        <script src="js/webrtc-adapter.js"></script>
+        <h3>Generic Sensor API</h3>
+        <p>Du kannst hier ausprobieren, ob die Anwendung die Sensordaten deiner Gerätesensoren auslesen kann.
+          Implementiert ist dies derzeit für das Gyroskop und den Beschleunigungssensor.</p>
+        <button class="white-text center" onclick="readGyroscope();">Gyroskopdaten auslesen</button>
+        <p id="gyroscope">Gyroskop (X / Y / Z):<br />
+          <span id="gyroscopeData"></span></span>
+        </p>
+        <button class="white-text center" onclick="readAccelerometer();">Beschleunigungssensor auslesen</button>
+        <p id="acceleration">Beschleunigung (X / Y / Z):<br />
+          <span id="accelerometerData"></span></span>
+        </p>
+    </section>
+    <section id="weiteres">
+      <div class="content">
+        <h2>Weiteres</h2>
+        <p>Dem geneigten Leser seien an dieser Stelle noch einige Hinweise, Informationen und Ressourcen mit an die Hand
+          gegeben, die mir bei der Recherche und der Erschließung des Themas geholfen haben.</p>
+        <h3>Monografien</h3>
+        <p>Ater, Tal: Building Progressive Web Apps – Bringing The Power Of Native To The Browser, 1. Auflage 2017,
+          O’Reilly Media Inc., Sebastopol, ISBN: 978-1-491-96165-0</p>
+        <p>Liebel, Christian: Progressive Web Apps – Das Praxisbuch, 1. Auflage 2019, Rheinwerk Verlag, Bonn, ISBN:
+          978-3-8362-6494-5</p>
+        <h3>Internet&shy;ressourcen</h3>
+        <p><a
+            href="https://medium.com/@slightlylate/progressive-apps-escaping-tabs-without-losing-our-soul-3b93a8561955">Medium:
+            Progressive Web Apps: Escaping Tabs Without Losing Our Soul</a></p>
+        <p><a href="https://developer.mozilla.org/">MDN Web Docs</a></p>
+        <p><a href="https://developers.google.com/">Google Developers</a></p>
+        <p><a href="https://web.dev/">Web.dev</a></p>
+        <p><a
+            href="https://blogs.windows.com/msEdgedev/2018/02/06/welcoming-progressive-web-apps-Edge-windows-10/">Microsoft
+            Store Ingestion</a></p>
+        <p><a href="https://w3c.github.io/manifest/">W3C: Web App Manifest</a></p>
+        <p><a href="https://www.pwastats.com/">PWA Stats - Interessante Statistiken und News</a></p>
+      </div>
+      <h3>Nützliche Tools</h3>
+      <p><a href="https://ngrok.com/">Testen lokaler PWA mit ngrok</a></p>
+      <p><a href="https://caniuse.com/">caniuse.com - Übersicht über Webschnittstellen etc.</a></p>
+      <p><a href="https://developers.google.com/web/tools/chrome-devtools/progressive-web-apps">Chrome DevTools für
+          PWA</a></p>
+      <h3>Icons dieser Seite</h3>
+      <p><a href="https://fontawesome.com/">Fontawesome.com</a></p>
+      <p><a href="https://www.pwabuilder.com/">PWA Builder</a></p>
+    </section>
+    <div class="transition-wrapper-footer">
+      <svg width="100%" height="100%" viewBox="0 0 1440 100" version="1.1" xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/"
+        style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+        <path
+          d="M0,200L0,50C0,50 85,78.9 200,72C250,69 264.099,31.88 300,32C350,32.167 415.948,127.509 500,73C561.203,33.309 614,58 800,72C849.949,75.76 864.099,31.88 900,32C950,32.167 1000,67 1100,73C1156.57,76.394 1195.36,52.944 1199.61,50.25C1213.52,40.824 1225.88,31.941 1243.47,32C1293.47,32.167 1359.42,127.509 1443.47,73C1504.67,33.309 1557.47,58 1743.47,72C1793.42,75.76 1807.57,31.88 1843.47,32C1893.47,32.167 1943.47,67 2043.47,73C2103.47,76.6 2143.47,50 2143.47,50L2143.47,200L0,200Z" />
+      </svg>
+    </div>
+  </main>
+  <footer>
+    <p class="white-text">Du hast Fragen, Anmerkungen, Kritik oder möchtest dich gerne zu dem Thema
+      austauschen?<br>Schreib mir:<br /> <a class="white-text" href="mailto:hey@yannik-haase.de">hey@yannik-haase.de</a>
+      oder <a class="white-text" href="https://t.me/yanniknh">telegram.me/yanniknh</a></p>
+  </footer>
+
+  <script>
+    // Register the service worker
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./service-worker.js');
+    }
+    // Detect online/offline changes
+    window.addEventListener("load", () => {
+      function handleNetworkChange(evt) {
+        var offlineIndicator = document.querySelector(".offline-indicator");
+        if (navigator.onLine) {
+          offlineIndicator.classList.add("invisible");
+        } else {
+          offlineIndicator.classList.remove("invisible");
+        }
+      }
+      window.addEventListener("online", handleNetworkChange);
+      window.addEventListener("offline", handleNetworkChange);
+      handleNetworkChange();
+    });
+    // Push API example
+    function notify() {
+      const requestPushNotificationButton = document.querySelector('#requestPushNotificationButton');
+      requestPushNotificationButton.disabled = true;
+      Notification.requestPermission().then(function (permission) {
+        if (permission === "granted") {
+          navigator.serviceWorker.ready.then(function (registration) {
+            registration.showNotification("Hi, ich bin eine Push-Notification!", {
+              body: "Dies ist eine Push-Notification die durch eine PWA ausgelöst wird. Gut, oder?",
+              actions: [
+                { action: "openPwa", title: "Zur PWA" },
+                { action: "close", title: "Schließen" }
+              ],
+              vibrate: [100, 200, 300],
+              icon: 'images/pwa-192x192.png',
+              noscreen: false
+            });
+          });
+        } else {
+          alert('Die Berechtigung zum Anzeigen von Push-Benachrichtigungen wurde nicht erteilt.');
+        }
+      });
+    }
+    // Web Share API Share example
+    function share() {
+      try {
+        navigator.share({ title: "Hey! Schau dir diese Seite doch mal an...", url: "https://pwa.yannik-haase.de" })
+      } catch (err) {
+        alert('Dein Gerät oder dein Browser unterstützt die Teilen-Funktion nicht.');
+      }
+    }
+    // Camera example
+    var track;
+    document.querySelector('#startCamera').addEventListener('click', async function init(e) {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({
+          audio: false,
+          video: {
+            facingMode: {
+              exact: 'environment'
+            }
+          }
+        });
+        const videoTracks = stream.getVideoTracks();
+        track = videoTracks[0];
+        const video = document.querySelector('video');
+        video.srcObject = stream;
+        video.style.display = 'block';
+        document.querySelector('#startCamera').style.display = "none";
+        document.querySelector('#stopCamera').style.display = "block";
+      } catch (error) {
+        alert('Das hat nicht geklappt. Entweder dein Browser- oder Gerätehersteller unterstützt diese Funtion nicht, oder das Gerät verfügt über keine Kamera.');
+      }
+    });
+    document.querySelector('#stopCamera').addEventListener('click', e => {
+      document.querySelector('#startCamera').style.display = "block";
+      document.querySelector('#stopCamera').style.display = "none";
+      document.querySelector('video').style.display = "none";
+      track.stop();
+    });
+    /* Starts the retrieval of gyroscope data */
+    function readGyroscope() {
+      try {
+        let gyroscope = new Gyroscope({ frequency: 30 });
+        const gyroscopeDataField = document.querySelector('#gyroscopeData');
+        gyroscope.addEventListener('reading', e => {
+          gyroscopeDataField.innerHTML = `${gyroscope.x.toFixed(2)} / ${gyroscope.y.toFixed(2)} / ${gyroscope.z.toFixed(2)}`;
+        });
+        gyroscope.addEventListener('error', err => {
+          document.querySelector('#gyroscope').style.display = "none";
+          alert('Der Abruf von Gyroskop-Daten wird von deinem Browser- oder Gerätehersteller nicht unterstützt.');
+        });
+        gyroscope.start();
+        document.querySelector('#gyroscope').style.display = "block";
+      } catch (error) {
+        alert('Der Abruf von Gyroskop-Daten wird von deinem Browser- oder Gerätehersteller nicht unterstützt.');
+      }
+    }
+    /* Starts the retrieval of accelerometer data */
+    function readAccelerometer() {
+      try {
+        let accelerometer = new Accelerometer({ frequency: 30 });
+        const accelerometerDataField = document.querySelector('#accelerometerData');
+        accelerometer.addEventListener('reading', e => {
+          accelerometerDataField.innerHTML = `${accelerometer.x.toFixed(2)} / ${accelerometer.y.toFixed(2)} / ${accelerometer.z.toFixed(2)}`;
+        });
+        accelerometer.addEventListener('error', err => {
+          document.querySelector('#acceleration').style.display = "none";
+          alert('Der Abruf von Beschleunigungssensor-Daten wird von deinem Browser- oder Gerätehersteller nicht unterstützt.');
+        });
+        accelerometer.start();
+        document.querySelector('#acceleration').style.display = "block";
+      } catch (error) {
+        alert('Der Abruf von Beschleunigungssensor-Daten wird von deinem Browser- oder Gerätehersteller nicht unterstützt.');
+      }
+    }
+  </script>
+</body>
+
+</html>

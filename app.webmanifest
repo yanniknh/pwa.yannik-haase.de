@@ -1,0 +1,42 @@
+{
+    "name": "PWA Beispiel App",
+    "short_name": "PWA Beispiel",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#182848",
+    "theme_color": "#182848",
+    "description": "Eine Demo-PWA für die FHDW.",
+    "icons": [{
+      "src": "images/pwa-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }, {
+      "src": "images/pwa-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }],
+    "shortcuts": [{
+      "name": "Icon öffnen",
+      "description": "Dieser Shortcut öffnet direkt das PWA Icon.",
+      "url": "/images/pwa.svg",
+      "icons": [
+        {
+          "src": "images/pwa-192x192.png",
+          "type": "image/png",
+          "purpose": "any"
+        }
+      ]
+    },
+    {
+      "name": "Demo Funktionen",
+      "description": "Zeigt die Demo-Funktionen dieser App an.",
+      "url": "/index.html#demo",
+      "icons": [
+        {
+          "src": "images/pwa-192x192.png",
+          "type": "image/png",
+          "purpose": "any"
+        }
+      ]
+    }]
+  }
