@@ -4,16 +4,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.min.css">
   <meta name="theme-color" content="#283593" />
   <meta name="Description" content="Exemplarische PWA im Zuge eines Referates für die FHDW Paderborn.">
   <!-- Service Worker-->
   <script src="service-worker.js"></script>
   <!---Web App Manifest-->
   <link rel="manifest" href="app.webmanifest">
-  <!--Apple specific settings-->
+  <!--iOS specific settings-->
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="apple-touch-icon" href="images/pwa-192x192.png">
   <title>PWA Beispiel</title>
 </head>
 
@@ -64,7 +65,7 @@
           als eine Kombination aus klassischer Website und nativer Applikation bezeichnet werden kann.</p>
         <p>Native Applikationen sind in diesem Zuge Anwendungen, die für ein dediziertes Betriebssystem entwickelt und
           angeboten werden. Hierunter fallen unter anderem Softwareprodukte in den Programmiersprachen Java oder Kotlin
-          für Android-Distributionen, Swift für Apple iOS oder C# für Windowsbasierte Betriebssysteme. Die Distribution
+          für Android-Distributionen, Swift für Apple iOS oder C# für windowsbasierte Betriebssysteme. Die Distribution
           von nativen Apps erfolgt in der Regel durch plattform-exklusive Kanäle wie dem Google Play Store oder dem App
           Store von iOS. Die Apps können auf den Zielsystemen installiert werden und können über Application Programming
           Interfaces (API: Programmierschnittstellen) auf viele Funktionen des Gerätes zugreifen. Dies ermöglicht zum
@@ -87,7 +88,7 @@
         <p>PWA sind der Versuch, die Vorteile dieser beider Welten zu vereinen. Bestrebt wird die Symbiose aus
           plattformübergreifenden Anwendungen, mit den Funktionsvorteilen von nativen Anwendungen, die auch offline
           jederzeit abgerufen werden können. Initiiert und erstmals beschrieben wurden PWA am 15. Juni 2015 von Alex
-          Russel, einem Produktmanager von Google.</p>
+          Russell, einem Produktmanager von Google.</p>
       </div>
     </section>
     <section id="good2know">
@@ -96,7 +97,7 @@
         <p>Dieser Abschnitt fasst die wesentlichen Eigenschaften von PWA zusammen, stellt die grundlegenden
           Implementierungskonzepte vor und gibt einen Überblick, über derzeit nutzbare Webschnittstellen.</p>
         <h3>Eigenschaften</h3>
-        <p>In seinem initialen Blogpost beschreibt Alex Russel neun wesentliche Eigenschaften einer PWA.</p>
+        <p>In seinem initialen Blogpost beschreibt Alex Russell neun wesentliche Eigenschaften einer PWA.</p>
         <div class="flex">
           <div class="card">
             <div class="card-header">
@@ -328,7 +329,7 @@
         <button id="startCamera" class="white-text center">Rückkamera testen</button>
         <button id="stopCamera" class="white-text center" style="display:none;">Kamera deaktivieren</button>
         <video autoplay></video>
-        <script src="js/webrtc-adapter.js"></script>
+        <script src="js/webrtc-adapter.min.js"></script>
         <h3>Generic Sensor API</h3>
         <p>Du kannst hier ausprobieren, ob die Anwendung die Sensordaten deiner Gerätesensoren auslesen kann.
           Implementiert ist dies derzeit für das Gyroskop und den Beschleunigungssensor.</p>
@@ -369,6 +370,7 @@
       <p><a href="https://caniuse.com/">caniuse.com - Übersicht über Webschnittstellen etc.</a></p>
       <p><a href="https://developers.google.com/web/tools/chrome-devtools/progressive-web-apps">Chrome DevTools für
           PWA</a></p>
+      <p><a href="https://www.pwabuilder.com/">PWA Builder</a></p>
       <h3>PWA Praxisbeispiele</h3>
       <p><a href="https://pwa.bar/">pwa.bar: Liste einiger PWA</a></p>
       <p><a href="https://pwa.zdf.de/">Mediathek der ZDF</a></p>
@@ -379,7 +381,6 @@
       <p><a href="https://pokedex.org/">Pokedex</a></p>
       <h3>Icons dieser Seite</h3>
       <p><a href="https://fontawesome.com/">Fontawesome.com</a></p>
-      <p><a href="https://www.pwabuilder.com/">PWA Builder</a></p>
     </section>
     <div class="transition-wrapper-footer">
       <svg width="100%" height="100%" viewBox="0 0 1440 100" version="1.1" xmlns="http://www.w3.org/2000/svg"
@@ -392,8 +393,8 @@
   </main>
   <footer>
     <p class="white-text">Du hast Fragen, Anmerkungen, Kritik oder möchtest dich gerne zu dem Thema
-      austauschen?<br>Schreib mir:<br /> <a class="white-text" href="mailto:hey@yannik-haase.de">hey@yannik-haase.de</a>
-      oder <a class="white-text" href="https://t.me/yanniknh">telegram.me/yanniknh</a></p>
+      austauschen?<br /><br /><a class="white-text" href="mailto:hey@yannik-haase.de">hey@yannik-haase.de</a>
+      / <a class="white-text" href="https://t.me/yanniknh">telegram.me/yanniknh</a></p>
   </footer>
 
   <script>
@@ -443,7 +444,7 @@
       try {
         navigator.share({ title: "Hey! Schau dir diese Seite doch mal an...", url: "https://pwa.yannik-haase.de" })
       } catch (err) {
-        alert('Dein Gerät oder dein Browser unterstützt die Teilen-Funktion nicht.');
+        alert('Dein Gerät oder dein Browser unterstützt die Teilen-Funktion leider nicht.');
       }
     }
     // Camera example
@@ -466,7 +467,7 @@
         document.querySelector('#startCamera').style.display = "none";
         document.querySelector('#stopCamera').style.display = "block";
       } catch (error) {
-        alert('Das hat nicht geklappt. Entweder dein Browser- oder Gerätehersteller unterstützt diese Funtion nicht, oder das Gerät verfügt über keine Kamera.');
+        alert('Dein Browser- oder Gerätehersteller unterstützt diese Funtion leider nicht, oder das Gerät verfügt über keine Kamera.');
       }
     });
     document.querySelector('#stopCamera').addEventListener('click', e => {

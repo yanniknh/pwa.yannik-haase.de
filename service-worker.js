@@ -6,10 +6,13 @@ self.addEventListener('install', function (evt) {
             return cache.addAll([
                 "/",
                 "/index.html",
-                "/css/style.css",
+                "/css/style.min.css",
                 "/images/wifi-offline.svg",
-                "/images/pwa-white-grey.png",
-                "/js/webrtc-adapter.js",
+                "/images/pwa-light.svg",
+                "/images/pwa-512x512.png",
+                "/images/pwa-192x192.png",
+                "/images/pwa-96x96.png",
+                "/js/webrtc-adapter.min.js",
                 "/favicon.ico"
             ]);
         })
